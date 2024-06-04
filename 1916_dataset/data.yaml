@@ -1,0 +1,13 @@
+train: 1916_dataset/train/images
+val: 1916_dataset/valid/images
+test: 1916_dataset/test/images
+
+nc: 4
+names: ['1', '2', '3', '4']
+
+roboflow:
+  workspace: dhr
+  project: 1916_430_fake
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/dhr/1916_430_fake/dataset/4
