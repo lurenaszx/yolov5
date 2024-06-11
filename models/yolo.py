@@ -48,6 +48,11 @@ from models.common import (
     GhostBottleneck,
     GhostConv,
     Proto,
+    h_sigmoid,
+    h_swish,
+    SELayer,
+    conv_bn_hswish,
+    MobileNet_Block
 )
 from models.experimental import MixConv2d
 from utils.autoanchor import check_anchor_order
@@ -411,6 +416,11 @@ def parse_model(d, ch):
             nn.ConvTranspose2d,
             DWConvTranspose2d,
             C3x,
+            h_sigmoid,
+            h_swish,
+            SELayer,
+            conv_bn_hswish,
+            MobileNet_Block
         }:
             c1, c2 = ch[f], args[0]
             if c2 != no:  # if not output

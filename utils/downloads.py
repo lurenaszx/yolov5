@@ -132,5 +132,5 @@ def attempt_download(file, repo="ultralytics/yolov5", release="v7.0"):
                 min_bytes=1e5,
                 error_msg=f"{file} missing, try downloading from https://github.com/{repo}/releases/{tag}",
             )
-
+    print(str(file))
     return str(file)

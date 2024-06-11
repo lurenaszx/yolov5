@@ -60,6 +60,11 @@ from utils.metrics import ConfusionMatrix, ap_per_class, box_iou
 from utils.plots import output_to_target, plot_images, plot_val_study
 from utils.torch_utils import select_device, smart_inference_mode
 
+import platform
+import pathlib
+plt = platform.system()
+if plt != 'Windows':
+  pathlib.WindowsPath = pathlib.PosixPath
 
 def save_one_txt(predn, save_conf, shape, file):
     """Saves one detection result to a txt file in normalized xywh format, optionally including confidence."""
@@ -365,14 +370,14 @@ def run(
 def parse_opt():
     """Parses command-line options for YOLOv5 model inference configuration."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", type=str, default=ROOT / "data/coco128.yaml", help="dataset.yaml path")
-    parser.add_argument("--weights", nargs="+", type=str, default=ROOT / "yolov5s.pt", help="model path(s)")
+    parser.add_argument("--data", type=str, default=ROOT / "1916_dataset/data.yaml", help="dataset.yaml path")
+    parser.add_argument("--weights", nargs="+", type=str, default=ROOT / "runs/train/exp11/weights/best.pt", help="model path(s)")
     parser.add_argument("--batch-size", type=int, default=32, help="batch size")
     parser.add_argument("--imgsz", "--img", "--img-size", type=int, default=640, help="inference size (pixels)")
     parser.add_argument("--conf-thres", type=float, default=0.001, help="confidence threshold")
     parser.add_argument("--iou-thres", type=float, default=0.6, help="NMS IoU threshold")
     parser.add_argument("--max-det", type=int, default=300, help="maximum detections per image")
-    parser.add_argument("--task", default="val", help="train, val, test, speed or study")
+    parser.add_argument("--task", default="test", help="train, val, test, speed or study")
     parser.add_argument("--device", default="", help="cuda device, i.e. 0 or 0,1,2,3 or cpu")
     parser.add_argument("--workers", type=int, default=8, help="max dataloader workers (per RANK in DDP mode)")
     parser.add_argument("--single-cls", action="store_true", help="treat as single-class dataset")
